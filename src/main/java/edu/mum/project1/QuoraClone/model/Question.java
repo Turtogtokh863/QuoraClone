@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,12 +20,13 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "question_id")
     private int id;
-    @Column(name = "question")
-    private String answer;
+    @Column(name = "question_content")
+    private String question_content;
+    @Column(name = "topic")
+    private String topic;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "answer_id", nullable = false)
-    private Question question;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "question")
+    private List<Answer> answer;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)

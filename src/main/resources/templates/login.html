@@ -150,14 +150,7 @@
     <div class="main">
 
     <input type="text" id="email" name="email" placeholder="Email"  class="form-control" autofocus>
-        <input type="password"
-               id="password" name="password"  class="form-control" placeholder="Password">
-
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
-        </div>
-
-        Are you a business? <a href=""> Get started here</a>
+        <input type="password" id="password" name="password"  class="form-control" placeholder="Password">
     <span class="clearfix"></span>
         </div>
     <div class="login-footer">
@@ -165,7 +158,7 @@
                         <div class="col-xs-6 col-md-6">
                             <div class="left-section">
 <!--                <a href="">Forgot your password?</a>-->
-                <a href="signup">Sign up now</a>
+                <a th:href="@{registration}">Sign up now</a>
               </div>
                         </div>
                         <div class="col-xs-6 col-md-6 pull-right">

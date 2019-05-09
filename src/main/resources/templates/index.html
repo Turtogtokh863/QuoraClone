@@ -1,307 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8">
+    <title>Quora</title>
+    <link rel="icon" href="img/title.png" type="" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
- <meta charset="utf-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
- <title>Quora</title>
- <link rel="icon" href="img/title.png" type="" sizes="16x16">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" type="text/css" href="css/style.css">
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-   <body>
-      <!-- Navigation -->
+<body>
+<!-- Navigation -->
+<span th:text="${logged}"></span>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand mylogo" th:href="@{index}"></a>
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-edit"></i> Answer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 col-md-5">
+                <input class="myform-control mr-sm-2" type="search" placeholder="Search Quora" aria-label="Search">
+                <button class="btn btn-light"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+</nav><!-- End of Navigation-->
 
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-         <div class="container-fluid">
-            <a class="navbar-brand mylogo" href="index.html"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                     <a class="nav-link" href="#"><i class="fa fa-home"></i> Home</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#"><i class="fa fa-edit"></i> Answer</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
-                  </li>
-               </ul>
-               <form class="form-inline my-2 my-lg-0 col-md-5">
-                  <input class="myform-control mr-sm-2" type="search" placeholder="Search Quora" aria-label="Search">
-                  <button class="btn btn-light"><i class="fa fa-search"></i></button>
-               </form>
-               <ul class="navbar-nav ml-auto">
-                  <li class="avatar-profile d-none d-sm-block ">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-toggle="dropdown" ><img src="img/avatar.png" height="48px" width="48px" class="img-responsive" /></a>
-                       <ul class="nav navbar-nav">
-                         
-                          <li class="dropdown">
-                           
-                            <ul class="dropdown-menu">
-                              <li><a href="profile.html">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                              <li class="divider"></li>
-                              <li><a href="login.html">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                              <li class="divider"></li>
-                              <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                              <li class="divider"></li>
-                              <li><a href="#"><span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                              <li class="divider"></li>
-                              <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                            </ul>
+<!-- Page Content -->
+<!-- /.container -->
 
-
-                          </li>
-                        </ul>
-                  </li>
-                  <li>
-                     <a href="#" id="add-question-btn" class="btn mybtn btn-success">Add Question or Link</a>
-                  </li>
-
-               </ul>
-            </div>
-         </div>
-      </nav><!-- End of Navigation-->
-
-      <!-- Page Content -->
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-lg-2">
-               <div class=" aff-right">
-                  <div class="ui-block">
-                     <h6 class="my-4">Feeds</h6>
-                     <hr>
-                     <div class="nav flex-column nav-pills nav-stacked" id="v-pills-tab-1" role="tablist" aria-orientation="vertical">
-
-                        <a class="nav-link active" data-toggle="pill" href="#"> Feeds</a>
-                        <a class="nav-link" data-toggle="pill" href="#"> Fashion and Style</a>
-                        <a class="nav-link" data-toggle="pill" href="#" >Business</a>
-                        <a class="nav-link" data-toggle="pill" href="#">Visiting and Travel</a>
-                        <a class="nav-link" data-toggle="pill" href="#">Sports</a>
-                        <a class="nav-link" data-toggle="pill" href="#">Education</a>
-                        <a class="nav-link" data-toggle="pill" href="#" >Music</a>
-                        <a class="nav-link" data-toggle="pill" href="#">Technlogy</a>
-                        <a class="nav-link" data-toggle="pill" href="#">Android Applications</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- /.col-lg-3 -->
-            <div class="col-lg-7">
-
-               <!--User Question post block-->
-               <div class="ui-block">
+<div class = "container">
+    <div class="row">
+        <div id = "cont" class="col-sm-4">.col-sm-4</div>
+        <div id = "cont" class="col-sm-4">
+            <form action="#" th:action="@{/addquestion}" th:object="${question}" enctype="multipart/form-data" method="post">
+                <div class="uk-margin">
+                    <div class="uk-form-controls">
+                        <input class="uk-input" style = "width:100%;" id="form-horizontal-text" th:field="*{question_content}" name = "title" type="text" placeholder="Ask question!">
+                    </div>
+                </div>
+                <div class="uk-margin" uk-margin>
+                    <div uk-form-custom="target: true">
+                        <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+                    </div>
+                    <button class="uk-button uk-button-default">Submit</button>
+                </div>
 
 
-                  <article class="hentry post">
-
-                     <div class="post__author author vcard inline-items">
-                        <img src="img/avatar.png" height="48px" width="48px" class="img-responsive" alt="author">
-                        <div class="author-date">
-                           <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
-                           <div class="post__date">
-                              <time class="published" datetime="2004-07-24T18:18">
-
-                              </time>
-                           </div>
-                        </div>
-
-                     </div>
-
-                     <div id="qnlink" class="m-link">
-                      <h5> <a href="#" id="add-question-2"   target="">What is your question?
-
-                      </a></h5>
-                   </div>
-
-
-                </article>
-             </div><!--End of ask question block-->
-
-            
-            <!--Hot Topics listed with question and answers-->
-            <div class="ui-block">
-               <article class="hentry post">
-                  <div class="m-link">
-                     <a href=""  target="_blank">
-                        <h6>What is the most surprising thing you have accidentally overheard about yourself?</h6>
-                     </a>
-                  </div>
-                  <div class="post__author author vcard inline-items">
-                     <img src="img/avatar.png" height="48px" width="48px" class="img-responsive" alt="author">
-                     <div class="author-date">
-                        <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
-                        <div class="post__date">
-                           <time class="published" datetime="2004-07-24T18:18">
-                           
-                           </time>
-                        </div>
-                     </div>
-                     <div class="more">
-                        <a href="#">
-                        <i class="fa fa-ellipsis-v"></i>
-                        </a>
-                     </div>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
-                     
-                     <details>
-                      <summary>more</summary>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.</p>
-
-                     <div class="post-additional-info inline-items">
-                     <p>
-                        <a href="#" class="btn btn-sm btn-light"><i class="far fa-arrow-alt-up"></i> UpVote</a>
-                        
-                     </p>
-                     <p class="social-icons">
-                        <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                     </p>
-                  </div>
-
-
-                       
-                     </details>
-                  </p>
-
-            
-               </article>
-
-            </div><!--End of Topic Block-->
-
-            <!--Questons to Answer-->
-            <div class="ui-block">
-
-               <div  class="ui-block" style="height: 50px;">
-                   <h5><i class="fa fa-question-circle" style="color:#b92b27;"></i> Questions for you</h5>
-               </div><!--End of question for you ui block-->
-              
-
-               <p class="qn-title">Questions added</p>
-              <article class="hentry post">
-              
-                  <div class="m-link">
-                     <a href=""  target="_blank">
-                        <h6>What is the most surprising thing you have accidentally overheard about yourself?</h6>
-                     </a>
-
-                    
-                  </div><!--End of m-lin div-->
-
-
-                    <div class="post-additional-info inline-items">
-                     <p>
-                        <a href="#" class="btn btn-sm btn-light"><i class="far fa-arrow-alt-up"></i> Answer</a>
-                        
-                     </p>
-                     <p class="social-icons">
-                        <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                     </p>
-                  </div><!--End of inline items-->
-                 
-                 </article>
-            </div><!--End of Questions to Answrer-->
-
-
-            
-          
-         </div><!--End of col-lg-7-->
-         <!-- /.col-lg-6 -->
-         <!--col-lg-3-->
-         <div class="col-lg-3">
-            <div class=" q-wid">
-               <div class="ui-block">
-                  <h6 class="my-4">Improve Your Feed</h6>
-                  <hr>
-                  <div class="nav flex-column nav-pills nav-stacked" id="v-pills-tab"  aria-orientation="vertical">
-                     <a class="nav-link"  data-toggle="pill" href="#"  >  Upvote 5 more good answers</a>
-                     <a class="nav-link"  data-toggle="pill" href="#"  >Ask your first question</a>
-                     <a class="nav-link" data-toggle="pill" href="#"   >Add 3 credentials</a>
-                     <a class="nav-link" data-toggle="pill" href="#">Answer a question</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- /.col-lg-3 -->
-      </div>
-   </div>
-   <!-- /.container -->
-
-   <!-- The Modal -->
-   <div class="modal fade" id="addModal">
-      <div class="modal-dialog">
-         <div class="modal-content">
+            </form>
+        </div>
+        <div id = "cont" class="col-sm-4">.col-sm-4</div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-               <ul class="nav nav-tabs " role="tablist">
-                  <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Add Questions</a>
+                <ul class="nav nav-tabs " role="tablist">
+                    <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Add Questions</a>
 
-                  </li>
-               </ul>
-               
-               <button type="button" class="close" data-dismiss="modal">×</button>
+                    </li>
+                </ul>
+
+                <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-               <div class="well">
-                  <h6>Tips on getting good answers quickly</h6>
-                  <ul>
-                     <li ><i class="far fa-check-circle" style="color:#329bff"> </i> Make sure your question hasn't been asked already</li> 
-                     <li><i class="far fa-check-circle" style="color:#329bff"> </i> Keep your question short and to the point</li>
-                     <li><i class="far fa-check-circle" style="color:#329bff"> </i> Double-check grammar and spelling</li>
-                  </ul>
-               </div>
-               <div class="post__author author vcard inline-items">
-                <img src="img/avatar.png" height="48px" width="48px" class="img-responsive" />
-                <div class="author-date">
-                  <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
-                  <div class="post__date">
-                     <time class="published" datetime="2004-07-24T18:18">
+                <div class="well">
+                    <h6>Tips on getting good answers quickly</h6>
+                    <ul>
+                        <li ><i class="far fa-check-circle" style="color:#329bff"> </i> Make sure your question hasn't been asked already</li>
+                        <li><i class="far fa-check-circle" style="color:#329bff"> </i> Keep your question short and to the point</li>
+                        <li><i class="far fa-check-circle" style="color:#329bff"> </i> Double-check grammar and spelling</li>
+                    </ul>
+                </div>
+                <div class="post__author author vcard inline-items">
+<!--                    <img src="img/avatar.png" height="48px" width="48px" class="img-responsive" />-->
+                    <div class="author-date">
+                        <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                        <div class="post__date">
+                            <time class="published" datetime="2004-07-24T18:18">
 
-                     </time>
+                            </time>
 
 
-                  </div>
-               </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="input-group">
+
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+
+
+                </div>
             </div>
-
-
-            <div class="input-group">
-
-             <textarea class="form-control" aria-label="With textarea"></textarea>
-
-
-          </div>
-       </div>
-       <!-- Modal footer -->
-       <div class="modal-footer">
-         <button type="button" class="btn btn-info" style="background-color: #3a66ad; color: white;">Add Question</button>
-         <button type="button" class="btn btn"  data-dismiss="modal">Cancel</button>
-      </div>
-   </div>
-</div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" style="background-color: #3a66ad; color: white;">Add Question</button>
+                <button type="button" class="btn btn"  data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
-<script type="text/javascript">
-    $(document).on("click", "#add-question", function(){
-
-        $("#addModal").modal("show");
-    });
-</script>

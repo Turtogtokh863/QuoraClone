@@ -3,16 +3,21 @@ package edu.mum.project1.QuoraClone.control;
 import javax.validation.Valid;
 
 
+import edu.mum.project1.QuoraClone.model.Question;
 import edu.mum.project1.QuoraClone.model.User;
 import edu.mum.project1.QuoraClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -70,7 +75,5 @@ public class LoginController {
     }
 
 
-
-
-
+   // @RequestMapping(value = "/index",
 }
