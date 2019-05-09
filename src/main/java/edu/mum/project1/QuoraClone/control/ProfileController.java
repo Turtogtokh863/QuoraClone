@@ -1,4 +1,4 @@
 package edu.mum.project1.QuoraClone.control;
 
-public class IndexController {
+public class ProfileController {
 }
