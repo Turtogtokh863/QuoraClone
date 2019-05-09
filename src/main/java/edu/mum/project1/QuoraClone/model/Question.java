@@ -1,4 +1,5 @@
 package edu.mum.project1.QuoraClone.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,18 +12,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "answer")
-public class Answer {
+@Table(name = "question")
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "answer_id")
+    @Column(name = "question_id")
     private int id;
-    @Column(name = "answer")
+    @Column(name = "question")
     private String answer;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "question_id", nullable = false)
+    @JoinColumn(name = "answer_id", nullable = false)
     private Question question;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
