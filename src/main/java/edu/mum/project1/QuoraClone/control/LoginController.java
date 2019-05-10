@@ -74,6 +74,4 @@ public class LoginController {
         return modelAndView;
     }
 
-
-   // @RequestMapping(value = "/index",
 }

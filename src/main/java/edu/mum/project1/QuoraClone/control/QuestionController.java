@@ -27,7 +27,6 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    java.util.logging.Logger logger = Logger.getLogger(this.getClass().getName());
 
     @RequestMapping(value="/index", method = RequestMethod.GET)
     public String home(Model model){
@@ -43,20 +42,13 @@ public class QuestionController {
             }
         }
 
-        for (User obj : userList) {
-            logger.info(obj.getName());
-            for (Question q : obj.getQuestions()) {
-                logger.info(q.getQuestion_content());
-            }
-        }
         model.addAttribute("question", new Question());
-        model.addAttribute("logged",  "Welcome" + user.getName());
+        model.addAttribute("logged",  "Welcome " + user.getName());
         return "index";
     }
 
     @PostMapping("/addquestion")
     public String addquestion(Model model, @ModelAttribute Question question){
-        logger.info(question.getQuestion_content());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         model.addAttribute("question", new Question());
