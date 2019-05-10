@@ -98,7 +98,7 @@
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
 
-
+         <p><span class="text-success" th:utext="${successMessage}"></span></p>
         <form autocomplete="off"  th:action="@{/registration}"
                   th:object="${user}" method="post" class="form-horizontal form-signin mg-btm"
                   role="form" style="width: 130%">
@@ -163,7 +163,7 @@
                             <button th:href="@{login}" type="submit" class="btn btn-large btn-danger pull-right">Login</button>
                         </div>
 
-        <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+
                     </div>
 
     </div>
