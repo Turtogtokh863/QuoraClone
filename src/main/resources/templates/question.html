@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
 
     <title>Quora</title>
     <link rel="icon" th:href="@{assets/img/title.png}" type="" sizes="16x16">
@@ -19,7 +19,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand mylogo" th:href="@{index.html}"></a>
+        <a class="navbar-brand mylogo" th:href="@{index}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -107,13 +107,23 @@
                 </div>
                     <hr/>
 
+                   <div class="collapse" id="collapseExample">
+                       <form th:action="@{/addAnswer}" th:object="${answer}" enctype="multipart/form-data" method="post">
+                           <div class="card card-body">
+                               <input th:field="*{question}" type="hidden">
+                               <textarea th:field="*{answer_content}" type="text"  class="form-control" aria-label="With textarea"></textarea>
+                           </div>
+                           <button type="submit" class="btn btn-info" style="background-color: #3a66ad; color: white; margin-top:5px;">Add Answer</button>
+                       </form>
+                   </div>
+
                     <h6>75 Answers</h6>
 
 
                      <div class="post__author author vcard inline-items">
                         <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
                         <div class="author-date">
-                           <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                           <a class="h6 post__author-name fn" th:text="${user_name}"  href="#"></a>
                            <div class="post__date">
                               <time class="published" datetime="2004-07-24T18:18">
                                 <p>Answered on Nov 20</p>
@@ -123,13 +133,46 @@
 
                      </div>
 
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
-
-                     <details>
-                      <summary>more</summary>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.</p>
+                   <div th:each="answerz:${listOfAnswers}" class="ui-block">
+                       <article class="hentry post">
+                           <div class="m-link">
+                               <h6 th:text="${answerz.getAnswer_content()}"></h6>
+                           </div>
+                           <div class="post__author author vcard inline-items">
+                               <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
+                               <div class="author-date">
+                                   <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                                   <div class="post__date">
+                                       <time class="published" datetime="2004-07-24T18:18">
+                                       </time>
+                                   </div>
+                               </div>
+                               <div class="more">
+                                   <a href="#">
+                                       <i class="fa fa-ellipsis-v"></i>
+                                   </a>
+                               </div>
+                           </div>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
+                               labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
+                               <details>
+                                   <summary>more</summary>
+                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
+                               labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.</p>
+                           <div class="post-additional-info inline-items">
+                               <p>
+                                   <a href="#" class="btn btn-sm btn-light"><i class="far fa-arrow-alt-up"></i> UpVote</a>
+                               </p>
+                               <p class="social-icons">
+                                   <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
+                                   <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
+                                   <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
+                               </p>
+                           </div>
+                           </details>
+                           </p>
+                       </article>
+                   </div><!--End of Topic Block-->
 
                      <div class="post-additional-info inline-items">
                      <p>
@@ -148,14 +191,7 @@
                      </details>
                   </p>
 
-                   <div class="collapse" id="collapseExample">
-                       <div class="card card-body">
-                           <textarea class="form-control" aria-label="With textarea"></textarea>
 
-                       </div>
-                       <button type="button" class="btn btn-info" style="background-color: #3a66ad; color: white; margin-top:5px;">Add Answer</button>
-
-                   </div>
 
 
                </article>
@@ -215,7 +251,7 @@
                <div class="post__author author vcard inline-items">
                 <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" />
                 <div class="author-date">
-                  <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                  <a class="h6 post__author-name fn" href="#">Samuel</a>
                   <div class="post__date">
                      <time class="published" datetime="2004-07-24T18:18">
 

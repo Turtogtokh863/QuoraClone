@@ -1,10 +1,8 @@
 package edu.mum.project1.QuoraClone.model;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -12,14 +10,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "answer")
+@ToString(exclude = {"question"})
 public class Answer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "answer_id")
     private int id;
-
-    @Column(name = "answer")
-    private String answer;
+    @Column(name = "answer_content")
+    private String answer_content;
+    @Column(name = "created_at")
+    private LocalDate createDate;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "question_id", nullable = false)

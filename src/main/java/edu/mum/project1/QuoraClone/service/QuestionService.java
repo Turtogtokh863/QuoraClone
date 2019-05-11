@@ -35,9 +35,8 @@ public class QuestionService {
         return list;
     }
 
-    public String getQuestionById(int id){
-        String question =questionRepository.findById(id).getQuestion_content();
-        return question;
+    public Question getQuestionById(int id){
+        return questionRepository.findById(id);
     }
 
     public boolean save(Question question){

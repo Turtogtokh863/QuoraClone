@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -24,6 +25,8 @@ public class Question {
     private String question_content;
     @Column(name = "topic")
     private String topic;
+    @Column(name = "created_at")
+    private LocalDate createDate;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "question")
     private List<Answer> answer;

@@ -26,26 +26,19 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value={ "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;
+    public String login(Model model){
+        return "login";
     }
 
-
-
-
     @RequestMapping(value="/registration", method = RequestMethod.GET)
-    public ModelAndView registration(){
-        ModelAndView modelAndView = new ModelAndView();
+    public String registration(Model model){
         User user = new User();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("registration");
-        return modelAndView;
+        model.addAttribute("user", user);
+        return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+    public String createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
@@ -62,7 +55,7 @@ public class LoginController {
             modelAndView.setViewName("registration");
 
         }
-        return modelAndView;
+        return "login";
     }
 
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
