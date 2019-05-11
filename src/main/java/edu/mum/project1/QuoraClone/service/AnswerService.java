@@ -30,7 +30,7 @@ public class AnswerService {
     }
 
     public List getAllAnswer(){
-        List list = new ArrayList();
+        List<Answer> list = new ArrayList();
         answerRepository.findAll().forEach(e -> list.add(e));
         return list;
     }

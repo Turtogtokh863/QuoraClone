@@ -9,10 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,32 +26,36 @@ public class QuestionController {
     private QuestionService questionService;
 
 
-    @RequestMapping(value="/index", method = RequestMethod.GET)
-    public String home(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        int userID = user.getId();
-        List<User> userList = userService.findAll();
-
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getId() == userID) {
-                userList.remove(i);
-                break;
-            }
-        }
-
-        model.addAttribute("question", new Question());
-        model.addAttribute("logged",  "Welcome " + user.getName());
-        return "index";
-    }
-
-    @PostMapping("/addquestion")
+    @RequestMapping(value = "/addquestion", method = RequestMethod.POST)
     public String addquestion(Model model, @ModelAttribute Question question){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         model.addAttribute("question", new Question());
         question.setUser(user);
         questionService.save(question);
+        return "redirect:/index";
+    }
+
+
+
+
+
+    @RequestMapping(value={ "/index"}, method = RequestMethod.GET)
+    public String questions(Model model, @ModelAttribute Question question){
+        model.addAttribute("newquestion", new Question());
+        model.addAttribute("listofquestions", questionService.getAllQuestion());
         return "index";
+    }
+
+    @RequestMapping(value={ "/questions/{id}"}, method = RequestMethod.GET)
+    public String questionById(@PathVariable int id, Model model){
+        String quest = questionService.getQuestionById(id);
+        model.addAttribute("questionById", quest);
+        return "questions";
+    }
+
+    @RequestMapping(value={ "/questions"}, method = RequestMethod.GET)
+    public String questionBy(Model model, @ModelAttribute Question question){
+        return "questions";
     }
 }

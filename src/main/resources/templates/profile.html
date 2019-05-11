@@ -150,21 +150,12 @@
                            </div>
                         </div>
                         <hr>
-                        <div class="row">
-                               <div class="col-md-6">
-                                 <label>User Id</label>
-                              </div>
-                              <div class="col-md-6">
-                                 <p>123</p>
-                              </div>
-                        </div>
-
-                        <div class="row">
+                            <div class="row">
                                <div class="col-md-6">
                                  <label>Name</label>
                               </div>
                               <div class="col-md-6">
-                                 <p>Sandeep Baniya</p>
+                                 <p th:text="${logged_email}"></p>
                               </div>
                         </div>
 
@@ -173,7 +164,7 @@
                                  <label>Email:</label>
                               </div>
                               <div class="col-md-6">
-                                 <p>djfdk@gmailcom</p>
+                                 <p th:text="${logged_email}"></p>
                               </div>
                         </div>
 

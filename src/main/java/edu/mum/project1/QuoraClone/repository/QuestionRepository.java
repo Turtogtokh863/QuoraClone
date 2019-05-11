@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface QuestionRepository extends CrudRepository<Question, Long> {
+public interface QuestionRepository extends CrudRepository<Question, Integer> {
     Question findById(int id);
     Question findByTopic(String topic);
     Question findByUser(User user);

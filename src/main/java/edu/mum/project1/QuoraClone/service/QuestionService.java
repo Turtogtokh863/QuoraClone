@@ -49,7 +49,7 @@ public class QuestionService {
         }
     }
 
-    public boolean deleteQuestionById(Long id){
+    public boolean deleteQuestionById(int id){
         try{
             questionRepository.deleteById(id);
             return true;
