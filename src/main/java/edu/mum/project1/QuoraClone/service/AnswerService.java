@@ -35,9 +35,8 @@ public class AnswerService {
         return list;
     }
 
-    public String getAnswerById(int id){
-        String answer =answerRepository.findById(id).getAnswer_content();
-        return answer;
+    public Answer getAnswerById(int id){
+        return answerRepository.findById(id);
     }
 
     public boolean save(Answer answer){

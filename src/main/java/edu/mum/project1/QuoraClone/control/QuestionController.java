@@ -52,6 +52,7 @@ public class QuestionController {
         User user = userService.findUserByEmail(auth.getName());
         Answer answer = new Answer();
         answer.setQuestion(question);
+
         model.addAttribute("listOfAnswers",answerService.getAllAnswer());
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);

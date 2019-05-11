@@ -136,7 +136,7 @@
                    <div th:each="answerz:${listOfAnswers}" class="ui-block">
                        <article class="hentry post">
                            <div class="m-link">
-                               <h6 th:text="${answerz.getAnswer_content()}"></h6>
+                               <h6></h6>
                            </div>
                            <div class="post__author author vcard inline-items">
                                <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
@@ -153,8 +153,7 @@
                                    </a>
                                </div>
                            </div>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                               labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
+                           <p th:text="${answerz.getAnswer_content()}">
                                <details>
                                    <summary>more</summary>
                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
