@@ -29,7 +29,7 @@
                     <a class="nav-link" th:href="@{index}"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-edit"></i> Answer</a>
+                    <a class="nav-link" th:href="@{question}"><i class="fa fa-edit"></i> Answer</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
@@ -89,7 +89,7 @@
                <article class="hentry post">
                   <div class="m-link">
                      <a  target="_blank">
-                        <h6 style="font-weight: bold" th:text="${questionById}"></h6>
+                        <h6 style="font-weight: bold" th:text="${question.getQuestion_content()}"></h6>
                      </a>
                   </div>
                <div class="post-additional-info inline-items">
@@ -117,33 +117,32 @@
                        </form>
                    </div>
 
-                    <h6>75 Answers</h6>
+                    <h6 th:text="${totalAnswer}"></h6>
 
 
                      <div class="post__author author vcard inline-items">
                         <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
                         <div class="author-date">
-                           <a class="h6 post__author-name fn" th:text="${user_name}"  href="#"></a>
+
                            <div class="post__date">
-                              <time class="published" datetime="2004-07-24T18:18">
-                                <p>Answered on Nov 20</p>
-                              </time>
+                             <p th:text="${user_name}"></p>
                            </div>
                         </div>
 
                      </div>
 
-                   <div th:each="answerz:${listOfAnswers}" class="ui-block">
+                   <div th:each="answerz:${question.getSortedAnswers()}" class="ui-block">
                        <article class="hentry post">
                            <div class="m-link">
                                <h6></h6>
                            </div>
                            <div class="post__author author vcard inline-items">
-                               <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
-                               <div class="author-date">
-                                   <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                              <div class="author-date">
+                                   <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
+                                   <a class="h6 post__author-name fn" th:text="${user_name}"  href="#"></a>
                                    <div class="post__date">
                                        <time class="published" datetime="2004-07-24T18:18">
+                                           <p th:text="${answerz.getCreateDate()}"></p>
                                        </time>
                                    </div>
                                </div>
@@ -154,52 +153,17 @@
                                </div>
                            </div>
                            <p th:text="${answerz.getAnswer_content()}">
-                               <details>
-                                   <summary>more</summary>
-                           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                               labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.</p>
-                           <div class="post-additional-info inline-items">
-                               <p>
-                                   <a href="#" class="btn btn-sm btn-light"><i class="far fa-arrow-alt-up"></i> UpVote</a>
-                               </p>
-                               <p class="social-icons">
-                                   <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                                   <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                                   <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                               </p>
-                           </div>
-                           </details>
+                           </p>
+                           <p>
+                               <a th:href="${'/inc_upvote/' + answerz.getId()}" class="btn btn-sm btn-light"><i class="fas fa-arrow-up"></i> UpVote</a>
+                               <span  th:text="${answerz.getUpvote()}"></span>
+
                            </p>
                        </article>
                    </div><!--End of Topic Block-->
 
-                     <div class="post-additional-info inline-items">
-                     <p>
-                        <a href="#" class="btn btn-sm btn-light"><i class="fas fa-arrow-up"></i> UpVote</a>
-
-                     </p>
-                     <p class="social-icons">
-                        <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                     </p>
-                    </div>
-
-
-
-                     </details>
-                  </p>
-
-
-
-
                </article>
             </div><!--End of Topic Block-->
-
-
-
-
-
 
          </div><!--End of col-lg-7-->
          <!-- /.col-lg-6 -->

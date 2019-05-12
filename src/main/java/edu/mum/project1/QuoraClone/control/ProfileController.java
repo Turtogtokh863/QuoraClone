@@ -21,9 +21,6 @@ public class ProfileController {
     public String profile(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-        int userID = user.getId();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("profile");
         model.addAttribute("logged_name",  user.getName());
         model.addAttribute("logged_email",  user.getEmail());
         return "profile";

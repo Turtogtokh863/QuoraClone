@@ -96,9 +96,10 @@
                     <div class="post__author author vcard inline-items">
                         <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
                         <div class="author-date">
-                            <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                            <a class="h6 post__author-name fn" th:text="${user_name}" href="#"></a>
                             <div class="post__date">
                                 <time class="published" datetime="2004-07-24T18:18">
+
                                 </time>
                             </div>
                         </div>
@@ -123,7 +124,7 @@
                     <div class="post__author author vcard inline-items">
                         <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
                         <div class="author-date">
-                            <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                            <a class="h6 post__author-name fn" th:text="${question_user_name}" href="#"></a>
                             <div class="post__date">
                                 <time class="published" datetime="2004-07-24T18:18">
                                 </time>

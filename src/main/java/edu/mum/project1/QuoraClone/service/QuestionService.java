@@ -40,6 +40,7 @@ public class QuestionService {
     }
 
     public boolean save(Question question){
+
         try{
             questionRepository.save(question);
             return true;
@@ -49,6 +50,7 @@ public class QuestionService {
     }
 
     public boolean deleteQuestionById(int id){
+
         try{
             questionRepository.deleteById(id);
             return true;
@@ -56,5 +58,6 @@ public class QuestionService {
             return false;
         }
     }
+
 
 }

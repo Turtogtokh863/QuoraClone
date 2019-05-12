@@ -11,4 +11,5 @@ public interface AnswerRepository extends CrudRepository<Answer, Long> {
     Answer findById(int id);
     Answer findByQuestion(Question question);
     Answer findByUser(User user);
+
 }

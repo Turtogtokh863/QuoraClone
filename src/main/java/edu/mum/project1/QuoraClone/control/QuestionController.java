@@ -7,6 +7,7 @@ import edu.mum.project1.QuoraClone.service.AnswerService;
 import edu.mum.project1.QuoraClone.service.QuestionService;
 import edu.mum.project1.QuoraClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class QuestionController {
@@ -45,19 +48,33 @@ public class QuestionController {
         return "index";
     }
 
+    @RequestMapping(value = {"/inc_upvote/{id}"}, method = RequestMethod.GET)
+    public String increaseUpvote(@PathVariable int id, Model model){
+        Answer answer = answerService.getAnswerById(id);
+        int q_id = answer.getQuestion().getId();
+        answer.incrementUpvote();
+        answerService.save(answer);
+        return "redirect:/questions/" + answer.getQuestion().getId();
+    }
+
     @RequestMapping(value={ "/questions/{id}"}, method = RequestMethod.GET)
     public String questionById(@PathVariable int id, Model model){
         Question question = questionService.getQuestionById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         Answer answer = new Answer();
+        int totalAnswer = question.getAnswer().size();
         answer.setQuestion(question);
-
-        model.addAttribute("listOfAnswers",answerService.getAllAnswer());
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
-        model.addAttribute("questionById", question.getQuestion_content());
+        if(totalAnswer <2){
+            model.addAttribute("totalAnswer", totalAnswer + " Answer");
+        }
+        else{
+            model.addAttribute("totalAnswer",totalAnswer + " Answers");
+        }
         model.addAttribute("user_name", user.getName() + " " + user.getLastName());
+        model.addAttribute("question_user_name", question.getUser().getName() + " " + question.getUser().getLastName());
         return "question";
     }
 
