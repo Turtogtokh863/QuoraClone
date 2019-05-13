@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "question")
-public class Question {
+public class Question implements Comparable<Question>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +39,12 @@ public class Question {
     public List<Answer> getSortedAnswers(){
         Collections.sort(answer);
         return answer;
+    }
+
+    @Override
+    public int compareTo(Question compareQuestion) {
+        int compareDate=((Question)compareQuestion).getCreateDate().getDayOfMonth();
+        return compareDate - this.createDate.getDayOfMonth();
     }
 
 }

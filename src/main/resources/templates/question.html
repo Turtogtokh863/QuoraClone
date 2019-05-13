@@ -19,7 +19,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand mylogo" th:href="@{/index}"></a>
+        <a class="navbar-brand mylogo" th:href="@{index}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,10 @@
                     <a class="nav-link" th:href="@{/index}"><i class="fa fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/question}"><i class="fa fa-edit"></i> Answer</a>
+                    <a th:href="@{/displayBarGraph}" class="nav-link"><i class="fa fa-bell"></i> Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/team}"><i class="fa fa-edit"></i> OurTeam</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 col-md-5">
@@ -45,10 +48,11 @@
                         <li class="dropdown">
 
                             <ul class="dropdown-menu">
-                                <li><a th:href="@{/profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a th:href="@{profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a th:href="@{/login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                <li><a th:href="@{login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                                 <li class="divider"></li>
+                                <li><a th:href="@{message}">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#"><span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                                 <li class="divider"></li>
@@ -67,174 +71,162 @@
         </div>
     </div>
 </nav><!-- End of Navigation-->
-
-      <!-- Page Content -->
-      <div class="container-fluid">
-         <div class="row">
-
-            <!-- /.col-lg-3 -->
-            <div class="col-lg-9">
-
-
-
-
-
-
+<!-- Page Content -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- /.col-lg-3 -->
+        <div class="col-lg-9">
             <!--Hot Topics listed with question and answers-->
             <div class="ui-block">
-               <article class="hentry post">
-                  <div class="m-link">
-                     <a  target="_blank">
-                        <h6 style="font-weight: bold" th:text="${question.getQuestion_content()}"></h6>
-                     </a>
-                  </div>
-               <div class="post-additional-info inline-items">
-                     <p>
-                        <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="color:grey;"><i class="far fa-check-square" style="color:#007bff"></i> Answer</a>
-                        <a href="" class="" style="color:grey; padding-left: 5px;"><i class="fab fa-chromecast" style="color:#007bff"></i> Follow</a>
-
-
-                     </p>
-                     <p class="social-icons">
-                        <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                        <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                     </p>
-                </div>
+                <article class="hentry post">
+                    <div class="m-link">
+                        <a  target="_blank">
+                            <h6 style="font-weight: bold" th:text="${question.getQuestion_content()}"></h6>
+                        </a>
+                    </div>
+                    <div class="post-additional-info inline-items">
+                        <p>
+                            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="color:grey;"><i class="far fa-check-square" style="color:#007bff"></i> Answer</a>
+                            <a href="" class="" style="color:grey; padding-left: 5px;"><i class="fab fa-chromecast" style="color:#007bff"></i> Follow</a>
+                        </p>
+                        <p class="social-icons">
+                            <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
+                            <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
+                        </p>
+                    </div>
                     <hr/>
-
-                   <div class="collapse" id="collapseExample">
-                       <form th:action="@{/addAnswer}" th:object="${answer}" enctype="multipart/form-data" method="post">
-                           <div class="card card-body">
-                               <input th:field="*{question}" type="hidden">
-                               <textarea th:field="*{answer_content}" type="text"  class="form-control" aria-label="With textarea"></textarea>
-                           </div>
-                           <button type="submit" class="btn btn-info" style="background-color: #3a66ad; color: white; margin-top:5px;">Add Answer</button>
-                       </form>
-                   </div>
-
+                    <div class="collapse" id="collapseExample">
+                        <form th:action="@{/addAnswer}" th:object="${answer}" enctype="multipart/form-data" method="post">
+                            <div class="card card-body">
+                                <input th:field="*{question}" type="hidden">
+                                <textarea th:field="*{answer_content}" type="text"  class="form-control" aria-label="With textarea"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-info" style="background-color: #3a66ad; color: white; margin-top:5px;">Add Answer</button>
+                        </form>
+                    </div>
                     <h6 th:text="${totalAnswer}"></h6>
+                    <div class="post__author author vcard inline-items">
+                        <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
+                        <div class="author-date">
+                            <div class="post__date">
+                                <p th:text="${user_name}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:each="answerz:${question.getSortedAnswers()}" class="ui-block">
+                        <article class="hentry post">
+                            <div class="m-link">
+                                <h6></h6>
+                            </div>
+                            <div class="post__author author vcard inline-items">
+                                <div class="author-date">
+                                    <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
+                                    <a class="h6 post__author-name fn" th:text="${user_name}"  href="#"></a>
+                                    <div class="post__date">
+                                        <time class="published" datetime="2004-07-24T18:18">
+                                            <p th:text="${answerz.getCreateDate()}"></p>
+                                        </time>
+                                    </div>
+                                </div>
+                                <div class="more">
+                                    <a href="#">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <p th:text="${answerz.getAnswer_content()}">
+                            </p>
+                            <p>
+                                <a th:href="${'/inc_upvote/' + answerz.getId()}" class="btn btn-sm btn-light"><i class="fas fa-arrow-up"></i> UpVote</a>
+                                <span  th:text="${answerz.getUpvote()}"></span>
 
+                            </p>
+                        </article>
+                    </div><!--End of Topic Block-->
 
-
-
-                   <div th:each="answerz:${question.getSortedAnswers()}" class="ui-block">
-                       <article class="hentry post">
-                           <div class="m-link">
-                               <h6></h6>
-                           </div>
-                           <div class="post__author author vcard inline-items">
-                              <div class="author-date">
-                                   <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
-                                   <a class="h6 post__author-name fn" th:text="${user_name}"  href="#"></a>
-                                   <div class="post__date">
-                                       <time class="published" datetime="2004-07-24T18:18">
-                                           <p th:text="${answerz.getCreateDate()}"></p>
-                                       </time>
-                                   </div>
-                               </div>
-                               <div class="more">
-                                   <a href="#">
-                                       <i class="fa fa-ellipsis-v"></i>
-                                   </a>
-                               </div>
-                           </div>
-                           <p th:text="${answerz.getAnswer_content()}">
-                           </p>
-                           <p>
-                               <a th:href="${'/inc_upvote/' + answerz.getId()}" style="color:grey;" ><i class="fas fa-arrow-up" style="color:#329bff"></i> UpVote.&nbsp;<span th:text="${answerz.getUpvote()}"></span></a>
-
-
-                           </p>
-                       </article>
-                   </div><!--End of Topic Block-->
-
-               </article>
+                </article>
             </div><!--End of Topic Block-->
 
-         </div><!--End of col-lg-7-->
-         <!-- /.col-lg-6 -->
-         <!--col-lg-3-->
-         <div class="col-lg-3">
+        </div><!--End of col-lg-7-->
+        <!-- /.col-lg-6 -->
+        <!--col-lg-3-->
+        <div class="col-lg-3">
             <div class=" q-wid">
-               <div class="ui-block">
-                  <h6 class="my-4">Improve Your Feed</h6>
-                  <hr>
-                  <div class="nav flex-column nav-pills nav-stacked" id="v-pills-tab"  aria-orientation="vertical">
-                     <p class="nav-link"  data-toggle="pill" href="#"  >  Upvote 5 more good answers</p>
-                     <p class="nav-link"  data-toggle="pill" href="#"  >Ask your first question</p>
-                     <p class="nav-link" data-toggle="pill" href="#"   >Add 3 credentials</p>
-                     <p class="nav-link" data-toggle="pill" href="#">Answer a question</p>
-                  </div>
-               </div>
+                <div class="ui-block">
+                    <h6 class="my-4">Improve Your Feed</h6>
+                    <hr>
+                    <div class="nav flex-column nav-pills nav-stacked" id="v-pills-tab"  aria-orientation="vertical">
+                        <a class="nav-link"  data-toggle="pill" href="#"  >  Upvote 5 more good answers</a>
+                        <a class="nav-link"  data-toggle="pill" href="#"  >Ask your first question</a>
+                        <a class="nav-link" data-toggle="pill" href="#"   >Add 3 credentials</a>
+                        <a class="nav-link" data-toggle="pill" href="#">Answer a question</a>
+                    </div>
+                </div>
             </div>
-         </div>
-         <!-- /.col-lg-3 -->
-      </div>
-   </div>
-   <!-- /.container -->
+        </div>
+        <!-- /.col-lg-3 -->
+    </div>
+</div>
+<!-- /.container -->
 
-   <!-- The Modal -->
-   <div class="modal fade" id="addModal">
-      <div class="modal-dialog">
-         <div class="modal-content">
+<!-- The Modal -->
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-               <ul class="nav nav-tabs " role="tablist">
-                  <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Add Questions</a>
+                <ul class="nav nav-tabs " role="tablist">
+                    <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Add Questions</a>
 
-                  </li>
-               </ul>
+                    </li>
+                </ul>
 
-               <button type="button" class="close" data-dismiss="modal">×</button>
+                <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-               <div class="well">
-                  <h6>Tips on getting good answers quickly</h6>
-                  <ul>
-                     <li ><i class="far fa-check-circle" style="color:#329bff"> </i> Make sure your question hasn't been asked already</li>
-                     <li><i class="far fa-check-circle" style="color:#329bff"> </i> Keep your question short and to the point</li>
-                     <li><i class="far fa-check-circle" style="color:#329bff"> </i> Double-check grammar and spelling</li>
-                  </ul>
-               </div>
-               <div class="post__author author vcard inline-items">
-                <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" />
-                <div class="author-date">
-                  <a class="h6 post__author-name fn" href="#" th:text="${logged_user}"></a>
-                  <div class="post__date">
-                     <time class="published" datetime="2004-07-24T18:18">
+                <div class="well">
+                    <h6>Tips on getting good answers quickly</h6>
+                    <ul>
+                        <li ><i class="far fa-check-circle" style="color:#329bff"> </i> Make sure your question hasn't been asked already</li>
+                        <li><i class="far fa-check-circle" style="color:#329bff"> </i> Keep your question short and to the point</li>
+                        <li><i class="far fa-check-circle" style="color:#329bff"> </i> Double-check grammar and spelling</li>
+                    </ul>
+                </div>
+                <div class="post__author author vcard inline-items">
+                    <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" />
+                    <div class="author-date">
+                        <a class="h6 post__author-name fn" href="#">Samuel</a>
+                        <div class="post__date">
+                            <time class="published" datetime="2004-07-24T18:18">
 
-                     </time>
+                            </time>
 
 
-                  </div>
-               </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="input-group">
+
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+
+
+                </div>
             </div>
-
-
-            <div class="input-group">
-
-             <textarea class="form-control" aria-label="With textarea"></textarea>
-
-
-          </div>
-       </div>
-       <!-- Modal footer -->
-       <div class="modal-footer">
-         <button type="button" class="btn btn-info" style="background-color: #3a66ad; color: white;">Add Question</button>
-         <button type="button" class="btn btn"  data-dismiss="modal">Cancel</button>
-      </div>
-   </div>
-</div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" style="background-color: #3a66ad; color: white;">Add Question</button>
+                <button type="button" class="btn btn"  data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <script type="text/javascript">
-   $(document).on("click", "#add-question", function(){
-
-      $("#addModal").modal("show");
-   });
-
-
-
+    $(document).on("click", "#add-question", function(){
+        $("#addModal").modal("show");
+    });
 </script>

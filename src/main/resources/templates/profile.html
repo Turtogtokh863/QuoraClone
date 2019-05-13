@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
 
@@ -9,17 +9,14 @@
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" th:href="@{http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}"  rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}">
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.1/css/all.css}" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
     <script src="http://code.jquery.com/jquery-1.11.1.min.js" th:src="@{http://code.jquery.com/jquery-1.11.1.min.js}"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" th:src="@{http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand mylogo" th:href="@{index.html}"></a>
+        <a class="navbar-brand mylogo" th:href="@{index}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,11 +25,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{index}"><i class="fa fa-home"></i> Home</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-edit"></i> Answer</a>
+                    <a th:href="@{/displayBarGraph}" class="nav-link"><i class="fa fa-bell"></i> Report</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
+                    <a class="nav-link" th:href="@{team}"><i class="fa fa-edit"></i> OurTeam</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 col-md-5">
@@ -43,29 +41,23 @@
                 <li class="avatar-profile d-none d-sm-block ">
                     <a href="#" class="dropdown-toggle"  data-toggle="dropdown" ><img th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" /></a>
                     <ul class="nav navbar-nav">
-
                         <li class="dropdown">
-
                             <ul class="dropdown-menu">
                                 <li><a th:href="@{/profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a th:href="@{/login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a th:href="@{/message}">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#"><span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                             </ul>
-
-
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" id="add-question" class="btn mybtn btn-success">Add Question or Link</a>
                 </li>
-
             </ul>
         </div>
     </div>

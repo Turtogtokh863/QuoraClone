@@ -47,7 +47,10 @@ public class QuestionController {
 
     @RequestMapping(value={ "/index"}, method = RequestMethod.GET)
     public String questions(Model model, @ModelAttribute Question question){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
         model.addAttribute("question", new Question());
+        model.addAttribute("user_name", user.getName() + " " + user.getLastName());
         model.addAttribute("listofquestions", questionService.getAllQuestion());
         return "index";
     }
@@ -78,7 +81,6 @@ public class QuestionController {
             model.addAttribute("totalAnswer",totalAnswer + " Answers");
         }
         model.addAttribute("user_name", user.getName() + " " + user.getLastName());
-        model.addAttribute("question_user_name", question.getUser().getName() + " " + question.getUser().getLastName());
         return "question";
     }
 
@@ -86,7 +88,6 @@ public class QuestionController {
     public String addAnswer(Model model, @ModelAttribute Answer answer){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
-
         answer.setUser(user);
         answer.setCreateDate(LocalDate.now());
         answerService.save(answer);

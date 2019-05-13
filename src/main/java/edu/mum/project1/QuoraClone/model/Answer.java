@@ -36,6 +36,7 @@ public class Answer implements Comparable<Answer>{
     public void incrementUpvote(){
         upvote++;
     }
+
     @Override
     public int compareTo(Answer compareAnswer) {
         int compareUpvote=((Answer)compareAnswer).getUpvote();
