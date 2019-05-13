@@ -47,11 +47,11 @@
                         <li class="dropdown">
 
                             <ul class="dropdown-menu">
-                                <li><a th:href="@{profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a th:href="@{/profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a th:href="@{login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                <li><a th:href="@{/login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a th:href="@{message}">Messages <span class="badge pull-right"> 42 </span></a></li>
+                                <li><a th:href="@{/message}">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#"><span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                                 <li class="divider"></li>
@@ -89,8 +89,7 @@
                            <div class="post__author author vcard inline-items">
                               <img th:src="@{assets/img/avatar.png}" style="height: 100px; width: 100px;" class="img-responsive" alt="author">
                               <div class="author-date">
-                                 <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
-                                 <p>0 Followers</p>
+                                 <a class="h6 post__author-name fn" href="#" th:text="${logged_name}"></a>
                                  <div class="post__date">
                                     <time class="published" datetime="2004-07-24T18:18">
 
@@ -120,19 +119,10 @@
                         <h6 class="my-4">Feeds</h6>
                         <hr>
                         <div class="nav flex-column nav-pills nav-stacked" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                           <a class="nav-link " data-toggle="pill" href="#"> Profile </a>
-                           <a class="nav-link " data-toggle="pill" href="#"> Answers 0</a>
-                           <a class="nav-link" data-toggle="pill" href="#"> Questions 0</a>
-                           <a class="nav-link" data-toggle="pill" href="#" >Spaces 0</a>
-                           <a class="nav-link" data-toggle="pill" href="#">Followers 0</a>
-                           <a class="nav-link" data-toggle="pill" href="#">Following 0</a>
-                           <a class="nav-link" data-toggle="pill" href="#">Education 0</a>
-
-                        </div>
+                           <a class="nav-link " data-toggle="pill" th:text="${my_answers}" href="#"></a>
+                           <a class="nav-link" data-toggle="pill" th:text="${my_questions}"href="#"></a>
+                           </div>
                      </div>
-
-
-
                   </div>
                </div>
 
@@ -143,11 +133,6 @@
                            <div class="col-md-6">
                               <h6 class="my-4">Profile Information</h6>
                            </div>
-
-                           <div class="col-md-6">
-
-                              <input type="submit" class="profile-edit-btn" style="margin-top: 15px;" name="btnAddMore" value="Edit Profile"/>
-                           </div>
                         </div>
                         <hr>
                             <div class="row">
@@ -155,7 +140,7 @@
                                  <label>Name</label>
                               </div>
                               <div class="col-md-6">
-                                 <p th:text="${logged_email}"></p>
+                                 <p th:text="${logged_name}"></p>
                               </div>
                         </div>
 
@@ -186,20 +171,6 @@
 
       <!-- /.col-lg-6 -->
       <!--col-lg-3-->
-      <div class="col-lg-3">
-         <div class=" q-wid">
-            <div class="ui-block">
-               <h6 class="my-4">Credentials & Highlights</h6>
-               <hr>
-               <div class="nav flex-column nav-pills nav-stacked" id="v-pills-tab"  aria-orientation="vertical">
-                  <a class="nav-link"  data-toggle="pill" href="#"  >Add employment credential</a>
-                  <a class="nav-link"  data-toggle="pill" href="#"  >Add education credential</a>
-                  <a class="nav-link" data-toggle="pill" href="#"   >Add a location credential</a>
-
-               </div>
-            </div>
-         </div>
-      </div>
       <!-- /.col-lg-3 -->
    </div>
 </div>
@@ -232,7 +203,7 @@
             <div class="post__author author vcard inline-items">
               <img th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" />
               <div class="author-date">
-               <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+               <a class="h6 post__author-name fn" href="#" th:text="${logged_name}"></a>
                <div class="post__date">
                   <time class="published" datetime="2004-07-24T18:18">
 

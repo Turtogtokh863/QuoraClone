@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+
+    <title>Quora</title>
+    <link rel="icon" th:href="@{assets/img/title.png}" type="" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" th:href="@{http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css}"  rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.8.1/css/all.css}" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js" th:src="@{http://code.jquery.com/jquery-1.11.1.min.js}"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" th:src="@{http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<style type="text/css" >
+
+    .span2 img {
+        width:200px;
+
+
+
+    }
+</style>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand mylogo" th:href="@{index.html}"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{index}"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-edit"></i> Answer</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/displayBarGraph}" class="nav-link"><i class="fa fa-bell"></i> Report</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 col-md-5">
+                <input class="myform-control mr-sm-2" type="search" placeholder="Search Quora" aria-label="Search">
+                <button class="btn btn-light"><i class="fa fa-search"></i></button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="avatar-profile d-none d-sm-block ">
+                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown" ><img th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" /></a>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <ul class="dropdown-menu">
+                                <li><a th:href="@{/profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a th:href="@{/login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="add-question" class="btn mybtn btn-success">Add Question or Link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav><!-- End of Navigation-->
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4">
+        <div class="span2">
+            <img  th:src="@{/assets/img/turtur.jpg}"  alt="" class="img-rounded">
+        </div>
+        <div class="span4">
+            <blockquote>
+                <p>Turtogtokh Tukker</p>
+                <small><cite title="Source Title">Ulaanbaatar, Mongolia <i class="icon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+                <i class="icon-envelope">Tmunkhtsooj@mum.edu</i>  <br>
+
+                <i class="icon-gift"></i> January 25, 1991
+            </p>
+        </div>
+
+        </div>
+
+
+
+        <div class="col-md-4">
+        <div class="span2">
+            <img th:src="@{/assets/img/sandeep.jpg}"  alt="" class="img-rounded">
+        </div>
+        <div class="span4">
+            <blockquote>
+                <p>Sandeep Baniya</p>
+                <small><cite title="Source Title"> Benibazaar, Nepal <i class="icon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+                <i class="icon-envelope"></i> sbaniya@gmail.com <br>
+
+                <i class="icon-gift"></i> November 4, 1994
+            </p>
+        </div>
+        </div>
+
+
+        <div class="col-md-4">
+        <div class="span2">
+            <img th:src="@{/assets/img/fortuna.jpg}"   alt="" class="img-rounded">
+        </div>
+        <div class="span4">
+            <blockquote>
+                <p>Fortuna</p>
+                <small><cite title="Source Title">California, US <i class="icon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+                <i class="icon-envelope"></i> fortuna@gmail.com <br>
+
+                <i class="icon-gift"></i> January 01, 1991
+            </p>
+        </div>
+        </div>
+
+
+        <div class="col-md-4">
+        <div class="span2">
+            <img th:src="@{/assets/img/haftom.jpg}"   alt="" class="img-rounded">
+        </div>
+        <div class="span4">
+            <blockquote>
+                <p>Hafton</p>
+                <small><cite title="Source Title">Fairfiled, IA, USA <i class="icon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+                <i class="icon-envelope"></i> haftom@gmail.com <br>
+
+                <i class="icon-gift"></i> January 30, 1990
+            </p>
+        </div>
+        </div>
+
+            <div class="col-md-4">
+        <div class="span2">
+            <img th:src="@{/assets/img/sam.jpg}"   alt="" class="img-rounded">
+        </div>
+        <div class="span4">
+            <blockquote>
+                <p>Samuel</p>
+                <small><cite title="Source Title">Fairfield, IA, US <i class="icon-map-marker"></i></cite></small>
+            </blockquote>
+            <p>
+                <i class="icon-envelope"></i>sam@gmail.com<br>
+
+                <i class="icon-gift"></i> December 4, 1990
+            </p>
+        </div>
+            </div>
+    </div>
+</div>

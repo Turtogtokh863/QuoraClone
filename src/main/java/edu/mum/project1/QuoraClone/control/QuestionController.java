@@ -37,7 +37,11 @@ public class QuestionController {
         User user = userService.findUserByEmail(auth.getName());
         question.setUser(user);
         question.setCreateDate(LocalDate.now());
-        questionService.save(question);
+        if(question.getQuestion_content().isEmpty()){
+            return "redirect:/index";
+        }else{
+            questionService.save(question);
+        }
         return "redirect:/index";
     }
 

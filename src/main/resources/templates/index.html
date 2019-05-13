@@ -25,11 +25,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{index}"><i class="fa fa-home"></i> Home</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-edit"></i> Answer</a>
+                    <a th:href="@{/displayBarGraph}" class="nav-link"><i class="fa fa-bell"></i> Report</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-bell"></i> Notifications</a>
+                    <a class="nav-link" th:href="@{team}"><i class="fa fa-edit"></i> OurTeam</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 col-md-5">
@@ -42,11 +43,10 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <ul class="dropdown-menu">
-                                <li><a th:href="@{profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                                <li><a th:href="@{/profile}">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a th:href="@{login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                                <li><a th:href="@{/login}">Login <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
                                 <li class="divider"></li>
-                                <li><a th:href="@{message}">Messages <span class="badge pull-right"> 42 </span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="#"><span class="glyphicon glyphicon-heart pull-right"></span></a></li>
                                 <li class="divider"></li>
@@ -96,7 +96,7 @@
                     <div class="post__author author vcard inline-items">
                         <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
                         <div class="author-date">
-                            <a class="h6 post__author-name fn" th:text="${user_name}" href="#"></a>
+                            <a class="h6 post__author-name fn" th:text="${logged_name}" href="#"></a>
                             <div class="post__date">
                                 <time class="published" datetime="2004-07-24T18:18">
 
@@ -123,6 +123,7 @@
                     </div>
                     <div class="post__author author vcard inline-items">
                         <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
+
                         <div class="author-date">
                             <a class="h6 post__author-name fn" th:text="${question_user_name}" href="#"></a>
                             <div class="post__date">
@@ -130,56 +131,12 @@
                                 </time>
                             </div>
                         </div>
-                        <div class="more">
-                            <a href="#">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </a>
-                        </div>
+
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
-                        <details>
-                            <summary>more</summary>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.</p>
-                    <div class="post-additional-info inline-items">
-                        <p>
-                            <a href="#" class="btn btn-sm btn-light"><i class="far fa-arrow-alt-up"></i> UpVote</a>
-                        </p>
-                        <p class="social-icons">
-                            <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                        </p>
-                    </div>
-                    </details>
-                    </p>
                 </article>
             </div><!--End of Topic Block-->
             <!--Questons to Answer-->
-            <div class="ui-block">
-                <div  class="ui-block" style="height: 50px;">
-                    <h5><i class="fa fa-question-circle" style="color:#b92b27;"></i> Questions for you</h5>
-                </div><!--End of question for you ui block-->
-                <p class="qn-title">Questions added</p>
-                <article class="hentry post">
-                    <div class="m-link">
-                        <a href=""  target="_blank">
-                            <h6 style="font-weight: bold">What is the most surprising thing you have accidentally overheard about yourself?</h6>
-                        </a>
-                    </div><!--End of m-lin div-->
-                    <div class="post-additional-info inline-items">
-                        <p>
-                            <a href="#" class="btn btn-sm btn-light"><i class="far fa-arrow-alt-up"></i> Answer</a>
-                        </p>
-                        <p class="social-icons">
-                            <a href="#" class="btn btn-sm btn-light"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn btn-sm btn-light"> <i class="fa fa-share"></i></a>
-                        </p>
-                    </div><!--End of inline items-->
-                </article>
-            </div><!--End of Questions to Answrer-->
+
         </div><!--End of col-lg-7-->
         <!-- /.col-lg-6 -->
         <!--col-lg-3-->
@@ -226,7 +183,7 @@
                 <div class="post__author author vcard inline-items">
                     <img src="assets/img/avatar.png" th:src="@{assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" />
                     <div class="author-date">
-                        <a class="h6 post__author-name fn" href="#">Samuel Tesfabruk</a>
+                        <a class="h6 post__author-name fn" href="#" th:text="${user_name}"></a>
                         <div class="post__date">
                             <time class="published" datetime="2004-07-24T18:18">
                             </time>
@@ -238,8 +195,9 @@
 
                     <div class="input-group">
                         <textarea   th:field="*{question_content}" name = "title" type="text"  class="form-control" aria-label="With textarea"></textarea>
-                    </div>
 
+                    </div>
+                    <input type="text" id="topic" name="topic" placeholder="Enter Topic"  class="form-control">
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="submit" class="btn btn-info" style="background-color: #3a66ad; color: white;">Add Question</button>
