@@ -136,15 +136,15 @@
     <div class="main">
 
         <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message"></label>
-        <input type="text" th:field="*{name}" class="form-control" placeholder="Name" autofocus>
+        <input type="text" th:field="*{name}" class="form-control" placeholder="Name" autofocus required>
 
         <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
-        <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control"/>
+        <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control" required/>
 
-        <input type="text" th:field="*{email}" placeholder="Email" class="form-control"/>
+        <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required/>
         <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
 
-         <input type="password" th:field="*{password}" placeholder="Password" class="form-control"/>
+         <input type="password" th:field="*{password}" placeholder="Password" class="form-control" required/>
         <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
 
 
@@ -156,11 +156,11 @@
                         <div class="col-xs-6 col-md-6">
                             <div class="left-section">
 <!--                <a href="">Forgot your password?</a>-->
-             <p>Already have an Account?</p>   <a href="">Sign up now</a>
+             <p>Already have an Account?</p>   <a th:href="@{login}">Login</a>
               </div>
                         </div>
                         <div class="col-xs-6 col-md-6 pull-right">
-                            <button th:href="@{login}" type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                            <button th:href="@{login}" type="submit" class="btn btn-large btn-danger pull-right">Register</button>
                         </div>
 
 
