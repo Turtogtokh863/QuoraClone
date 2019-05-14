@@ -58,8 +58,6 @@
                                 <li class="divider"></li>
                                 <li><a th:href="@{login}">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                             </ul>
-
-
                         </li>
                     </ul>
                 </li>
@@ -110,7 +108,7 @@
                         <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
                         <div class="author-date">
                             <div class="post__date">
-                                <p th:text="${user_name}"></p>
+                                <p th:text="${question.getUser().getName() + question.getUser().getLastName()}"></p>
                             </div>
                         </div>
                     </div>
@@ -122,7 +120,7 @@
                             <div class="post__author author vcard inline-items">
                                 <div class="author-date">
                                     <img th:src="@{/assets/img/avatar.png}" height="48px" width="48px" class="img-responsive" alt="author">
-                                    <a class="h6 post__author-name fn" th:text="${user_name}"  href="#"></a>
+                                    <a class="h6 post__author-name fn" th:text="${answerz.getUser().getName() + answerz.getUser().getLastName()}"  href="#"></a>
                                     <div class="post__date">
                                         <time class="published" datetime="2004-07-24T18:18">
                                             <p th:text="${answerz.getCreateDate()}"></p>
